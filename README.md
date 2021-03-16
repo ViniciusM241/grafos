@@ -2,8 +2,8 @@
 ---
 ---
 ## Gera Matrizes Adjacentes
-> Acesse pelo link: ![Matriz de Adjacências](https://grafos-eight.vercel.app/)
----
+> Acesse pelo link: [Matriz de Adjacências](https://grafos-eight.vercel.app/)
+
 ### Etapas:
 - [x] Gerar grafos e dígrafos.
 - [x] Imprimir grau do grafo.
