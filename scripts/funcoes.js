@@ -92,7 +92,7 @@ const montaTabela = (matriz) => {
     const tbody = document.createElement('tbody');
     const table = document.querySelector('#table');
     const tr = document.createElement('tr');
-    const th = document.createElement('th');
+    let th = document.createElement('th');
 
     table.innerHTML = "";
 
@@ -100,38 +100,66 @@ const montaTabela = (matriz) => {
         const th = document.createElement('th');
         th.innerHTML = i === 0 ? 'V' : i;
         tr.appendChild(th);
-        console.log(tr);
-        console.log(th);
     }
-    th.innerHTML = 'Grau';
-    tr.appendChild(th)
-    thead.appendChild(tr)
+    if (tipoGrafo() == 'rdbGrafo'){
+        th.innerHTML = 'Grau';
+    } else {
+        th.innerHTML = 'Grau E.';
+        tr.appendChild(th);
+        th = document.createElement('th');
+        th.innerHTML = 'Grau R.';
+        tr.appendChild(th);
+    }
+    tr.appendChild(th);
+    thead.appendChild(tr);
     table.appendChild(thead);
 
-    matriz.forEach((linha, index) => {
+    matriz.forEach((linha, indexY) => {
         const tr = document.createElement('tr');
         let th = document.createElement('th');
 
-        th.innerHTML = index + 1;
+        th.innerHTML = indexY + 1;
         th.classList.add('vertice');
         tr.appendChild(th);
         let grau = 0;
-        linha.forEach(bit => {
+        let grauR = 0;
+        linha.forEach((bit, indexX) => {
             th = document.createElement('th');
             th.innerHTML = bit;
             if (bit === 1){
                 grau++;
                 th.classList.add('eUm');
             }
+            if (tipoGrafo() === 'rdbDigrafo'){
+                if(matriz[indexX][indexY] === 1)
+                    grauR++;
+            }
             tr.appendChild(th);
         })
+        
         th = document.createElement('th');
         th.innerHTML = grau;
         th.classList.add('eUm');
-        tr.appendChild(th)
-        tbody.appendChild(tr)
-        table.appendChild(tbody)
-    })
+        tr.appendChild(th);
+
+        if (tipoGrafo() === 'rdbDigrafo'){
+            th = document.createElement('th');
+            th.innerHTML = grauR;
+            th.classList.add('eUm');
+            tr.appendChild(th);
+        }
+        tbody.appendChild(tr);
+        table.appendChild(tbody);
+    });
+    /*
+    if (tipoGrafo() === 'rdbDigrafo'){
+        let qtdeVertices = verticesInput.value
+        for (let i = 0; i < qtdeVertices; i++) {
+            for (let j = 0; j < qtdeVertices; j++) {
+                console.log(matriz[j][i]);
+            }
+        }
+    }*/
 }
 
 const load = () => {
@@ -157,7 +185,6 @@ button.addEventListener('click', () => {
     setTimeout(() => {
         spinner.style.display = 'none'
         element.words.map(element => preencheMatriz(element));
-        console.log(matriz);
         montaTabela(matriz);
     }, 1000)
 });
@@ -220,7 +247,6 @@ const initializeBoxes = () => {
             }
         })
         if (element.words.length === 0) {
-            console.log(0);
             const i = document.createElement('i');
             i.innerHTML = "Nenhuma aresta escolhida.";
             i.classList.add("text-muted");
@@ -229,4 +255,5 @@ const initializeBoxes = () => {
         }
     }
 }
+
 initializeBoxes();
