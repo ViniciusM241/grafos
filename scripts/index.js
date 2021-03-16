@@ -1,3 +1,8 @@
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
 let element;
 const qtdeArestas = document.querySelector("#formArestas")
 const qtdeVertices = document.querySelector("#formVertices")
@@ -60,7 +65,7 @@ const initializeGrafos = () => {
 }
 
 qtdeArestas.addEventListener('change', () => {
-    if (qtdeVertices.value !== "" && qtdeArestas.value != ""){
+    if (qtdeVertices.value !== "" && qtdeArestas.value != "" && qtdeVertices.value > 0 && qtdeArestas.value > 0){
         input.disabled = false;
     }
     if (qtdeArestas.value < qtdeVertices.value - 1){
@@ -116,8 +121,10 @@ const initializeBoxes = () => {
             containers.appendChild(div);
             if (element.words.length === parseInt(qtdeArestas.value))
                 input.disabled = true;
-            else
+            else {
+                tooltipList[0].hide();
                 input.disabled = false;
+            }
         })
     }
 }
