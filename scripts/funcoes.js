@@ -55,16 +55,30 @@ const montaMatriz = () => {
     matriz = [];
     const indice = parseInt(verticesInput.value);
     let flag = false;
+    let nums = [];
+    const qtdeVertices = verticesInput.value
+
+    const numbers = [...Array(parseInt(qtdeVertices)).keys()].map(i => i + 1)
 
     element.words.forEach(x => {
         x.split("-").forEach(y => {
-            if (parseInt(y) > indice)
+            let answer = numbers.indexOf(parseInt(y))
+            if(answer === -1){
+                nums.push(y);
                 flag = true;
+            }
         })
     })
-
+    
     if (flag){
-        alert('Valores de vértices incorretos. Confira.');
+        let s = 'Valores de vértices incorretos. Confira o vértice';
+
+        if (nums.length > 1)
+            s += "s " + nums.join("; ");
+        else
+            s += " " + nums[0];
+        alert(s)
+
         return false;
     }
 
@@ -237,10 +251,17 @@ const initializeBoxes = () => {
             div.appendChild(p);
             div.appendChild(strong);
             containers.appendChild(div);
-            if (element.words.length === parseInt(qtdeArestas) && tipoGrafo() === 'rdbGrafo')
+
+            if (element.words.length === parseInt(qtdeArestas) && tipoGrafo() === 'rdbGrafo') {
+                button.focus()        
+                tooltipList[0].hide();        
                 input.disabled = true;
-            else if (element.words.length === parseInt(qtdeArestas) * 2 && tipoGrafo() === 'rdbDigrafo')
+            }
+            else if (element.words.length === parseInt(qtdeArestas) * 2 && tipoGrafo() === 'rdbDigrafo') {
+                button.focus()
+                tooltipList[0].hide();
                 input.disabled = true;
+            }
             else {
                 tooltipList[0].hide();
                 input.disabled = false;
