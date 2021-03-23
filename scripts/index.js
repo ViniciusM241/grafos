@@ -131,8 +131,3 @@ const initializeBoxes = () => {
 
 initializeGrafos();
 initializeBoxes();
-
-
-
-
-

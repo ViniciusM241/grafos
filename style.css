@@ -130,3 +130,18 @@ tbody tr th.eUm {
     display: none;
     margin: 0 auto;
 }
+
+#terminal, #gui {
+    display: none;
+}
+
+#terminal {
+    font-family: 'Karla', sans-serif;
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+    line-height: 16px;
+    padding: 10px;
+    letter-spacing: 1.5px;
+}
