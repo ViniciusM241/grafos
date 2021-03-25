@@ -8,10 +8,10 @@ const initGrafos = () => {
 
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
+        return new bootstrap.Tooltip(tooltipTriggerEl);
     })
 
-    arestasInput.addEventListener('change', (e) => {  
+    arestasInput.addEventListener('change', () => {  
         let qtdeArestas = arestasInput.value
         let qtdeVertices = verticesInput.value
 
@@ -167,22 +167,6 @@ const initGrafos = () => {
             tbody.appendChild(tr);
             table.appendChild(tbody);
         });
-        /*
-        if (tipoGrafo() === 'rdbDigrafo'){
-            let qtdeVertices = verticesInput.value
-            for (let i = 0; i < qtdeVertices; i++) {
-                for (let j = 0; j < qtdeVertices; j++) {
-                    console.log(matriz[j][i]);
-                }
-            }
-        }*/
-    }
-    const load = () => {
-        const spinner = document.querySelector('#spinner');
-        spinner.style.display = 'block';
-        setInterval(1000, () => {
-            spinner.style.display = 'block'
-        })
     }
     
     button.addEventListener('click', () => {
@@ -284,11 +268,11 @@ document.querySelectorAll('input[name="rdbModo"]').forEach((elem) => {
       const item = event.target.value;
       if (item === 'gui') {
           document.getElementById('gui').style.display = 'block';
-          document.getElementById('terminal').style.display = 'none';
+          document.getElementById('divTerminal').style.display = 'none';
           initGrafos();
       } else {
         document.getElementById('gui').style.display = 'none';
-        document.getElementById('terminal').style.display = 'block';
+        document.getElementById('divTerminal').style.display = 'block';
       }
     })
 })

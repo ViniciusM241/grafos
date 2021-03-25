@@ -131,17 +131,22 @@ tbody tr th.eUm {
     margin: 0 auto;
 }
 
-#terminal, #gui {
+#divTerminal, #gui {
     display: none;
 }
 
 #terminal {
+    resize: none;
+    border-radius: 4px;
     font-family: 'Karla', sans-serif;
     font-size: 1rem;
     background-color: black;
     color: white;
-    margin-top: 50px;
     line-height: 16px;
     padding: 10px;
     letter-spacing: 1.5px;
+}
+
+#divTerminal p {
+    margin: 20px 0 10px 0;
 }

@@ -96,7 +96,7 @@ const initTerminal = () => {
                 return;
             }
 
-            await getTerminal('Quantidade de Vértices: ');
+            await getTerminal('\nQuantidade de Vértices: ');
             const qtdeVertices = parseInt(response);
             if (response === '') {
                 setTerminal('terminal: invalid value.')
@@ -123,10 +123,11 @@ const initTerminal = () => {
                 }
                 matriz.push(linha)
             }
+            let strArestas = []
             for (let i = 0; i < qtdeArestas; i++) {
                 let x = 1;
                 while (x == 1) {
-                    await getTerminal(`Aresta ${i + 1}:\nOrigem: `);
+                    await getTerminal(`\nAresta ${i + 1}:\nOrigem: `);
                     const origem = parseInt(response);
                     if (origem === '')
                         x = 1
@@ -136,6 +137,7 @@ const initTerminal = () => {
                         if (origem === '')
                             x = 1
                         else {
+                            strArestas.push(`${origem}-${destino}`)
                             matriz[origem][destino] = 1;
                             if (tipoGrafo === 1)
                                 matriz[destino][origem] = 1;
@@ -164,7 +166,7 @@ const initTerminal = () => {
             matriz.forEach(linha => {
                 s += linha.join('\t') + '\n\n';
             })
-            setTerminal('\n' + s);
+            setTerminal(`\nArestas: ${strArestas.join(" ")}\n\n${s}`);
         }
     }
 
@@ -265,7 +267,7 @@ const initTerminal = () => {
 
 
     document.addEventListener('DOMContentLoaded', () => {
-        let terminalTextInit =`JS-Terminal v0.1\nby Vinicius Melo, GitHub user: ViniciusM241\n\n${library['users'][library.loggedUser]['name']}@${library['users'][library.loggedUser]['ip']}>>`;
+        let terminalTextInit =`JS-Terminal v0.1\nby Vinicius Melo, GitHub user: ViniciusM241\n\n${library['users'][library.loggedUser]['name']}@${library['users'][library.loggedUser]['ip']}>>matriz`;
         terminal.value = terminalTextInit;
         terminal.focus();
         terminal.addEventListener('keydown', listenTerminalMain);
