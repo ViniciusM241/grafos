@@ -143,6 +143,8 @@ const initGrafos = () => {
                 th = document.createElement('th');
                 th.innerHTML = bit;
                 if (bit === 1){
+                    if (indexY === indexX && tipoGrafo() === 'rdbGrafo')
+                        grau++;
                     grau++;
                     th.classList.add('eUm');
                 }

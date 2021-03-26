@@ -151,11 +151,14 @@ const initTerminal = () => {
                 let qtdeR = 0;
                 for (let j = 1; j < qtdeVertices + 1; j++) {
                     if (tipoGrafo === 2) {
-                        if (matriz[j][i] === 1)
+                        if (matriz[j][i] === 1) 
                             qtdeR++;
                     }
-                    if (matriz[i][j] === 1)
+                    if (matriz[i][j] === 1) {
+                        if (i === j && tipoGrafo === 1)
+                            qtde++;
                         qtde++;
+                    }
                 }
                 if (tipoGrafo === 2) 
                     matriz[i][qtdeVertices + 2] = qtdeR;
